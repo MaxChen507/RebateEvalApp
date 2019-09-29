@@ -46,7 +46,7 @@ namespace RebateEvalApp.BLL
         public ICollection<String> GetAnalysisList()
         {
             //List of analysis
-            List<String> rebateAnalysis = null;
+            List<String> rebateAnalysis = new List<string>();
             
             //First get file information
             List<String> rebateInfo = DAL.DALSingleton.Instance.ReadRebateRecords_FromFile().ToList();
@@ -75,26 +75,26 @@ namespace RebateEvalApp.BLL
             List<String> entryTimeAnalysisList = GetEntryTimeAnalysis(analysisInfos).ToList();
 
             //Minimum entry time: 1:12
-            String minEntryTime = "Minimum entry time: ";
+            String minEntryTime = "Minimum entry time: " + entryTimeAnalysisList.ElementAt(0);
 
             //Maximum entry time: 2:06
-            String maxEntryTime = "Maximum entry time: ";
+            String maxEntryTime = "Maximum entry time: " + entryTimeAnalysisList.ElementAt(1);
 
             //Average entry time: 1:37
-            String aveEntryTime = "Average entry time: ";
+            String aveEntryTime = "Average entry time: " + entryTimeAnalysisList.ElementAt(2);
 
 
             //Perform inter-record time analysis
             List<String> interRecordTimeAnalysisList = GetInterRecordTimeAnalysis(analysisInfos).ToList();
 
             //Minimum inter-record time: 0:03
-            String minInterRecTime = "Minimum inter-record time: ";
+            String minInterRecTime = "Minimum inter-record time: " + interRecordTimeAnalysisList.ElementAt(0);
 
             //Maximum inter-record time: 0:9
-            String maxInterRecTime = "Maximum inter-record time: ";
+            String maxInterRecTime = "Maximum inter-record time: " + interRecordTimeAnalysisList.ElementAt(1);
 
             //Average inter-record time: 0:05
-            String aveInterRecTime = "Average inter-record time: ";
+            String aveInterRecTime = "Average inter-record time: " + interRecordTimeAnalysisList.ElementAt(2);
 
 
             //Total time: 16:12
@@ -110,9 +110,17 @@ namespace RebateEvalApp.BLL
             }
             String backspaceCount = "Backspace count: " + totalBackSpace.ToString();
 
-
-
-
+            //Add all correct string analysis to rebateAnalysis list
+            rebateAnalysis.Add(numRec);
+            rebateAnalysis.Add(minEntryTime);
+            rebateAnalysis.Add(maxEntryTime);
+            rebateAnalysis.Add(aveEntryTime);
+            rebateAnalysis.Add(minInterRecTime);
+            rebateAnalysis.Add(maxInterRecTime);
+            rebateAnalysis.Add(aveInterRecTime);
+            rebateAnalysis.Add(totalTime);
+            rebateAnalysis.Add(backspaceCount);
+            
             return rebateAnalysis;
         }
 

@@ -61,5 +61,21 @@ namespace RebateEvalApp.DAL
             return recordsText;
         }
 
+        public void WriteRebateAnalysis_ToFile(List<String> rebateAnalysis)
+        {
+            //Sets the path and file name
+            String dataFilePath = RebateRecordFileDirectory + "\\CS6326Asg3_Analysis.txt";
+
+            //String builder to hold new text to write over existing file
+            StringBuilder rebateAnalysisTxt = new StringBuilder();
+
+            foreach (String item in rebateAnalysis)
+            {
+                rebateAnalysisTxt.Append(item + "\n");
+            }
+            
+            System.IO.File.WriteAllText(dataFilePath, rebateAnalysisTxt.ToString());
+        }
+
     }
 }

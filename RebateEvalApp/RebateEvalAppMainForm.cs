@@ -17,6 +17,9 @@ namespace RebateEvalApp
 {
     public partial class RebateEvalAppMainForm : Form
     {
+        //List of analysis
+        List<String> rebateAnalysis = new List<string>();
+
         public RebateEvalAppMainForm()
         {
             InitializeComponent();
@@ -24,8 +27,13 @@ namespace RebateEvalApp
 
         private void RebateEvalAppMainForm_Load(object sender, EventArgs e)
         {
+            //Change ListView Settings
+            listViewRecordAnalysis.View = View.Details;
+            listViewRecordAnalysis.GridLines = true;
+            listViewRecordAnalysis.Columns.Add("Analysis:");
+            listViewRecordAnalysis.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listViewRecordAnalysis.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-            
         }
 
         private void BtnFileBrowse_Click(object sender, EventArgs e)
@@ -55,7 +63,52 @@ namespace RebateEvalApp
 
         private void BtnPerformAnalysis_Click(object sender, EventArgs e)
         {
-            BLL.BLLSingleton.Instance.GetAnalysisList();
+            try
+            {
+                //Populates rebateAnalysis List
+                rebateAnalysis = BLL.BLLSingleton.Instance.GetAnalysisList().ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Incorrect Input File Format. Please select correct record information. ");
+                //Refreshes the ListView
+                RefreshListView();
+                return;
+            }
+
+            //Writes analysis to text file
+            DAL.DALSingleton.Instance.WriteRebateAnalysis_ToFile(rebateAnalysis);
+
+            //Refreshes the ListView
+            RefreshListView();
+        }
+
+        private void RefreshListView()
+        {
+            //Clears ListView
+            listViewRecordAnalysis.Items.Clear();
+
+            //Check if RebateInfo is null
+            if (rebateAnalysis == null || !rebateAnalysis.Any())
+            {
+                listViewRecordAnalysis.Enabled = false;
+                return;
+            }
+            else
+            {
+                listViewRecordAnalysis.Enabled = true;
+            }
+
+            //Populates Listview
+            foreach (String item in rebateAnalysis)
+            {
+                ListViewItem itemLS = new ListViewItem();
+                itemLS.Text = item;
+
+                listViewRecordAnalysis.Items.Add(item);
+            }
+
+
         }
     }
 }

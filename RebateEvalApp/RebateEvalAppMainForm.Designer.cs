@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listViewAnalysis = new System.Windows.Forms.ListView();
+            this.listViewRecordAnalysis = new System.Windows.Forms.ListView();
             this.btnFileBrowse = new System.Windows.Forms.Button();
             this.btnPerformAnalysis = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
@@ -37,14 +37,14 @@
             // 
             // listViewAnalysis
             // 
-            this.listViewAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.listViewRecordAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewAnalysis.HideSelection = false;
-            this.listViewAnalysis.Location = new System.Drawing.Point(12, 12);
-            this.listViewAnalysis.Name = "listViewAnalysis";
-            this.listViewAnalysis.Size = new System.Drawing.Size(332, 320);
-            this.listViewAnalysis.TabIndex = 0;
-            this.listViewAnalysis.UseCompatibleStateImageBehavior = false;
+            this.listViewRecordAnalysis.HideSelection = false;
+            this.listViewRecordAnalysis.Location = new System.Drawing.Point(12, 12);
+            this.listViewRecordAnalysis.Name = "listViewAnalysis";
+            this.listViewRecordAnalysis.Size = new System.Drawing.Size(332, 320);
+            this.listViewRecordAnalysis.TabIndex = 0;
+            this.listViewRecordAnalysis.UseCompatibleStateImageBehavior = false;
             // 
             // btnFileBrowse
             // 
@@ -94,7 +94,7 @@
             this.Controls.Add(this.txtFilePath);
             this.Controls.Add(this.btnPerformAnalysis);
             this.Controls.Add(this.btnFileBrowse);
-            this.Controls.Add(this.listViewAnalysis);
+            this.Controls.Add(this.listViewRecordAnalysis);
             this.Name = "RebateEvalAppMainForm";
             this.Text = "Rebate Eval Main Form";
             this.Load += new System.EventHandler(this.RebateEvalAppMainForm_Load);
@@ -105,7 +105,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listViewAnalysis;
+        private System.Windows.Forms.ListView listViewRecordAnalysis;
         private System.Windows.Forms.Button btnFileBrowse;
         private System.Windows.Forms.Button btnPerformAnalysis;
         private System.Windows.Forms.TextBox txtFilePath;
