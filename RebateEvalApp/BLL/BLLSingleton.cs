@@ -84,6 +84,8 @@ namespace RebateEvalApp.BLL
             String aveEntryTime = "Average entry time: ";
 
 
+            //Perform inter-record time analysis
+            List<String> interRecordTimeAnalysisList = GetInterRecordTimeAnalysis(analysisInfos).ToList();
 
             //Minimum inter-record time: 0:03
             String minInterRecTime = "Minimum inter-record time: ";
@@ -93,6 +95,7 @@ namespace RebateEvalApp.BLL
 
             //Average inter-record time: 0:05
             String aveInterRecTime = "Average inter-record time: ";
+
 
             //Total time: 16:12
             String totalTime = "Total time: ";
@@ -118,12 +121,45 @@ namespace RebateEvalApp.BLL
                 entryTimeSpanList.Add(timeSpanTemp);
             }
 
+            return GetCalcTimeSpanList(entryTimeSpanList);
+        }
+        
+        private ICollection<String> GetInterRecordTimeAnalysis(List<Domain.AnalysisInfo> analysisInfos)
+        {
+            List<String> interRecordTimeAnalysisList = new List<string>();
+
+            List<TimeSpan> interRecordTimeSpanList = new List<TimeSpan>();
+
+            int count = 0;
+            DateTime lastRecordsEndTime = analysisInfos.First().EndTime;
+            foreach (Domain.AnalysisInfo item in analysisInfos)
+            {
+                if(count == 0)
+                {
+                    
+                }
+                else
+                {
+                    TimeSpan timeSpanTemp = (item.StartTime - lastRecordsEndTime);
+                    interRecordTimeSpanList.Add(timeSpanTemp);
+                    lastRecordsEndTime = item.EndTime;
+                }
+                count++;
+            }
+
+            return GetCalcTimeSpanList(interRecordTimeSpanList);
+        }
+
+        private List<String> GetCalcTimeSpanList(List<TimeSpan> timeSpanList)
+        {
+            List<String> timeSpanListInfo = new List<string>();
+
             //Calculate entry time info
-            TimeSpan minTimeSpan = entryTimeSpanList.First();
-            TimeSpan maxTimeSpan = entryTimeSpanList.First();
+            TimeSpan minTimeSpan = timeSpanList.First();
+            TimeSpan maxTimeSpan = timeSpanList.First();
             TimeSpan totalTimeSpan = TimeSpan.Zero;
             int count = 0;
-            foreach (TimeSpan item in entryTimeSpanList)
+            foreach (TimeSpan item in timeSpanList)
             {
                 if (TimeSpan.Compare(minTimeSpan, item) == 1)
                 {
@@ -143,15 +179,14 @@ namespace RebateEvalApp.BLL
 
             TimeSpan aveTimeSpan = new TimeSpan(totalTimeSpan.Ticks / count);
 
-            aveTimeSpan = TimeSpan.FromSeconds((int)(aveTimeSpan.TotalSeconds));
+            aveTimeSpan = TimeSpan.FromSeconds((long)Math.Round(aveTimeSpan.TotalSeconds));
 
-            entryTimeAnalysisList.Add(minTimeSpan.ToString());
-            entryTimeAnalysisList.Add(maxTimeSpan.ToString());
-            entryTimeAnalysisList.Add(aveTimeSpan.ToString());
+            timeSpanListInfo.Add(minTimeSpan.ToString());
+            timeSpanListInfo.Add(maxTimeSpan.ToString());
+            timeSpanListInfo.Add(aveTimeSpan.ToString());
 
-            return entryTimeAnalysisList;
+            return timeSpanListInfo;
         }
-        
 
     }
 }
