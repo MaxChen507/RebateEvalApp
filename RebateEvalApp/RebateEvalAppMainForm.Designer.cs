@@ -35,20 +35,21 @@
             this.labelFilePath = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listViewAnalysis
+            // listViewRecordAnalysis
             // 
             this.listViewRecordAnalysis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewRecordAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewRecordAnalysis.HideSelection = false;
             this.listViewRecordAnalysis.Location = new System.Drawing.Point(12, 12);
-            this.listViewRecordAnalysis.Name = "listViewAnalysis";
-            this.listViewRecordAnalysis.Size = new System.Drawing.Size(332, 320);
+            this.listViewRecordAnalysis.Name = "listViewRecordAnalysis";
+            this.listViewRecordAnalysis.Size = new System.Drawing.Size(332, 280);
             this.listViewRecordAnalysis.TabIndex = 0;
             this.listViewRecordAnalysis.UseCompatibleStateImageBehavior = false;
             // 
             // btnFileBrowse
             // 
-            this.btnFileBrowse.Location = new System.Drawing.Point(12, 385);
+            this.btnFileBrowse.Location = new System.Drawing.Point(12, 352);
             this.btnFileBrowse.Name = "btnFileBrowse";
             this.btnFileBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnFileBrowse.TabIndex = 3;
@@ -59,7 +60,7 @@
             // btnPerformAnalysis
             // 
             this.btnPerformAnalysis.Enabled = false;
-            this.btnPerformAnalysis.Location = new System.Drawing.Point(128, 434);
+            this.btnPerformAnalysis.Location = new System.Drawing.Point(128, 402);
             this.btnPerformAnalysis.Name = "btnPerformAnalysis";
             this.btnPerformAnalysis.Size = new System.Drawing.Size(101, 48);
             this.btnPerformAnalysis.TabIndex = 4;
@@ -69,7 +70,7 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(12, 359);
+            this.txtFilePath.Location = new System.Drawing.Point(12, 326);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
             this.txtFilePath.Size = new System.Drawing.Size(332, 20);
@@ -79,7 +80,7 @@
             // labelFilePath
             // 
             this.labelFilePath.AutoSize = true;
-            this.labelFilePath.Location = new System.Drawing.Point(12, 343);
+            this.labelFilePath.Location = new System.Drawing.Point(12, 310);
             this.labelFilePath.Name = "labelFilePath";
             this.labelFilePath.Size = new System.Drawing.Size(51, 13);
             this.labelFilePath.TabIndex = 1;
@@ -89,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 494);
+            this.ClientSize = new System.Drawing.Size(356, 462);
             this.Controls.Add(this.labelFilePath);
             this.Controls.Add(this.txtFilePath);
             this.Controls.Add(this.btnPerformAnalysis);
