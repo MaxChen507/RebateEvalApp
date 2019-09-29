@@ -68,7 +68,7 @@ namespace RebateEvalApp.BLL
 
 
             //Number of records: 10
-            String numRec = "Number of records: " + rebateInfo.Count.ToString();
+            String numRec = "Number of records: " + analysisInfos.Count.ToString();
 
 
             //Perform entry time analyis
@@ -98,10 +98,17 @@ namespace RebateEvalApp.BLL
 
 
             //Total time: 16:12
-            String totalTime = "Total time: ";
+            TimeSpan totalTimeSpan = analysisInfos.Last().EndTime - analysisInfos.First().StartTime;
+            String totalTime = "Total time: " + totalTimeSpan.ToString();
+
 
             //Backspace count: 14
-            String backspaceCount = "Backspace count: ";
+            int totalBackSpace = 0;
+            foreach (Domain.AnalysisInfo item in analysisInfos)
+            {
+                totalBackSpace += item.Backspaces;
+            }
+            String backspaceCount = "Backspace count: " + totalBackSpace.ToString();
 
 
 
